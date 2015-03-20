@@ -1,8 +1,8 @@
 var react = require('react')
-var title = require('./title')
 var header = require('./header')
+var title = require('./title')
 var content = require('./content')
-var page = require('page')
+var footer = require('./footer')
 var d = react.DOM
 
 module.exports = react.createClass(
@@ -15,10 +15,15 @@ module.exports = react.createClass(
     }
   , render: function () {
       var self = this
-      return d.div({ className: (self.state.route === '/') ? 'page splash' : 'page' }
+      return d.div({ className: (self.state.route === '/') ? 'site splash' : 'site' }
       , [ header({ ee: self.props.ee, sections: Object.keys(self.props.content) })
-        , d.div({ className: 'row main-container' }
-          , [ title({ route: self.state.route })
+        , d.main({ className: 'row main-container' }
+          , [ title(
+                { route: self.state.route
+                , ee: self.props.ee
+                , nav: self.props.nav
+                }
+              )
             , content(
                 { ee: self.props.ee
                 , route: self.state.route
@@ -27,6 +32,7 @@ module.exports = react.createClass(
               )
             ]
           )
+        , footer({})
         ]
       )
     }

@@ -1,5 +1,5 @@
 var react = require('react')
-var app = require('./page')
+var app = require('./app')
 var page = require('page')
 var ee = require('nee')()
 
@@ -38,13 +38,11 @@ var content = (
 
 window.addEventListener('load', function (e) {
   var body = document.querySelector('body')
-  react.renderComponent(app({ ee: ee, content: content }), body)
+  react.renderComponent(app({ ee: ee, content: content, nav: page }), body)
   page('*', function (context) {
     var locationString = context.canonicalPath.split('#')[1]
     if (typeof locationString === 'undefined') locationString = '/'
 
-    if (locationString === '/') document.querySelector('body').className = 'splash'
-    else document.querySelector('body').className = ''
     ee.emit('nav-click', [locationString])
   })
   page.start()

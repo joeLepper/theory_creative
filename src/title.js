@@ -27,12 +27,15 @@ module.exports = react.createClass(
       var height = 150
 
       return d.div({ className: titleContainerClass.concat(offsetClass).join(' ') }
-      , d.div({ className: 'row main-title' }
+      , d.div(
+          { className: 'row main-title'
+          , onClick: function (e) { self.props.nav.redirect('/')  }
+          }
         , d.div({ className: titleClass.join(' ') }
           , d.img(
               { height: height
               , width: height * 2.35
-              , src: 'img/' + (self.props.route === '/' ? 'Theory-logo.png' : 'Theory-logo-white.png')
+              , src: 'img/Theory-logo.png'
               }
             )
           )

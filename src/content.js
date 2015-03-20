@@ -9,6 +9,7 @@ module.exports = react.createClass(
         , 'col-sm-6'
         , 'col-md-6'
         , 'col-lg-6'
+        , 'content-container'
         ]
       )
 
